@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <h1>Aula 01 - Introdução ao Javascript</h1>
+
+    <h2>O que é Javascript</h2>
+    <h2>Diferenciais aos Javascript</h2>
+
+    <h2>Hello World!</h2>
+
+    <!--outputs para o javascript-->
+
+    <script>
+        console.log("Olá Mundo!");
+    </script>
+
+
+    <script>
+        document.write("Olá Mundo!");
+    </script>
+
+
+    <script>
+        //window.alert("Olá Mundo!");
+    </script>
+
+
+    <div id="textoAqui">AQUI E INNER HTML</div>
+    <script>
+        document.getElementById("textoAqui").innerHTML = "Olá Inner HTML";
+    </script>
+
+
+
+    <!--inputs para o javascript-->
+
+    <!--igual "=" representa 'recebe'.-->
+    <script>
+       // var nome = prompt("informe o seu nome:");
+      //console.log("Nome digitado: " + nome);
+    </script>
+
+
+    <script>
+        // var confirmacao = confirm("Deseja Continuar?");
+        // console.log("Resposta: " + confirmacao);
+    </script>
+
+    <input id="campoTexto" type="text" placeholder="Digite algo...">
+    <button onclick="obterTexto()">Obter Texto</button>
+    
+    <script>
+        function obterTexto() {
+            var texto = document.getElementById("campoTexto").value;
+            console.log("Texto digitado: " + texto);
+        }
+    </script>
+
+
+
+
+
+
+    
+</body>
+</html>
