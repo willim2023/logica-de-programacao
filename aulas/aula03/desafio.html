@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Desafio - Quiz de conhecimentos Gerais</h1>
+
+    <form>
+        <h3>Pergunta 1: Qual é a capital do Brasil?</h3>
+        <input type="text" id="resposta1" placeholder="Sua resposta..." required>
+
+        <h3>Pergunta 2: Qual é o maior oceano do mundo?</h3>
+        <input type="text" id="resposta2" placeholder="Sua resposta..." required>
+
+        <h3>Pergunta 3: Quem escreveu 'Romeu e Julieta'?</h3>
+        <input type="text" id="resposta3" placeholder="Sua resposta..." required>
+
+        <h3>Pergunta 4: Qual o simbolo químico do ouro?</h3>
+        <input type="text" id="resposta4" placeholder="Sua resposta..." required>
+
+        <h3>Pergunta 5: Em que ano ocorreu a independencia do Brsil?</h3>
+        <input type="text" id="resposta5" placeholder="Sua resposta..." required>
+    </form>
+
+    <div id="resultado"></div>
+
+    <br>
+    <button type="button" onclick="">Verificar Respostas</button>
+
+    <script>
+        function verificarRespostas(){
+            let pontuacao = 0;
+            //guardar respostas em variaveis
+            //if (resposta correta) pontuacao++;
+            
+
+            let resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = "<h2>Sua pontuação:" + pontuacao + "</h2>";
+            
+        }
+    </script>
+
+</body>
+</html>
