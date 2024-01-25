@@ -2,25 +2,36 @@ class MaterialBibliografico {
     constructor(titulo, autor) {
         this.titulo = titulo;
         this.autor = autor;
-        this.disponivel = true;
+        this._disponivel = true;
     }
 
     realizarEmprestimo() {
-        if (this.disponivel == true) {
-            this.disponivel = false;
-            return true; //emprestimo realizado com sucesso
+        if (this._disponivel) {
+            this._disponivel = false;
+            return true; //Emprestimo realizado com sucesso
         } else {
-            return false; //material ja emprestado
+            return false; //Material já emprestado
         }
     }
 
     realizarDevolucao() {
-        if(this.disponivel == false) {
-            this.disponivel = true;
-            return true; //devolução realizada com sucesso
+        if (!this._disponivel) {
+            this._disponivel = true;
+            return true; //Devolução realizada com sucesso
         } else {
-            return false; //material já devolvido previamente
+            return false; //Material já devolvido previamente
         }
+    }
+
+    renomearAutor(novoNome) {
+        if (novoNome == "") {
+            return alert("Não pode cadastrar nome vazio")
+        }
+        this.autor = novoNome;
+    }
+
+    toString() {
+        return `${this.titulo} - ${this.autor}`;
     }
 }
 
@@ -28,7 +39,11 @@ class Livro extends MaterialBibliografico {
     constructor(titulo, autor, genero) {
         super(titulo, autor);
         this.genero = genero;
-    } 
+    }
+
+    alterarGenero(novoGenero) {
+        this.genero = novoGenero;
+    }
 }
 
 class Revista extends MaterialBibliografico {
@@ -39,23 +54,23 @@ class Revista extends MaterialBibliografico {
 }
 
 function realizarAcao(acao) {
-   const selectLivros = document.getElementById("livros");
-   const selectedIndex = selectLivros.selectedIndex;
+    const selectLivros = document.getElementById("livros");
+    const selectedIndex = selectLivros.selectedIndex;
 
-   if(selectLivros.selectedIndex === 0) {
-       alert("POr favor, selecione um livro válido");
-       return;
-   }
+    if (selectedIndex === 0) {
+        alert("Por favor, selecione um livro válido.");
+        return;
+    }
 
-   const livroSelecionado = livros[selectedIndex - 1];
+    const livroSelecionado = livros[selectedIndex - 1];
 
-   if(acao === 'emprestimo') {
-       const emprestimoSucesso = livroSelecionado.realizarEmprestimo();
-       exibirResultado(`Emprestimo de ${livroSelecionado.titulo}: ${emprestimoSucesso? 'Sucesso' : 'Material já emprestado'}`)
-   } else if (acao === 'devolucao') {
-    const devolucaoSucesso = livroSelecionado.realizarDevolucao();
-    exibirResultado(`Devolução de ${livroSelecionado.titulo}: ${devolucaoSucesso? 'Sucesso' : 'Material já devolvido'}`);
-   }
+    if (acao === 'emprestimo') {
+        const emprestimoSucesso = livroSelecionado.realizarEmprestimo();
+        exibirResultado(`Emprestimo de ${livroSelecionado.titulo}: ${emprestimoSucesso ? 'Sucesso' : 'Material já emprestado'}`);
+    } else if (acao === 'devolucao') {
+        const devolucaoSucesso = livroSelecionado.realizarDevolucao();
+        exibirResultado(`Devolução de ${livroSelecionado.titulo}: ${devolucaoSucesso ? 'Sucesso' : 'Material já devolvido'}`);
+    }
 }
 
 function exibirResultado(mensagem) {
@@ -72,11 +87,13 @@ const livros = [
 
 const selectLivros = document.getElementById("livros");
 
-for(let i = 0; i < livros.length; i++) {
+for (let i = 0; i < livros.length; i++) {
     const livro = livros[i];
     const option = document.createElement("option");
-    option.value = i + 1; // adiciona 1 para evitar o valor 0, que representa a opção padrão
+    option.value = i + 1; //Adiciona 1 para evitar o valor 0, que representa a opção padrão
     option.text = livro.titulo;
     selectLivros.add(option);
 }
 
+console.log(livros[0].toString());
+console.log(livros[3].toString());
