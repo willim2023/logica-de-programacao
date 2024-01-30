@@ -1,10 +1,9 @@
 class Animal {
-
     //3 propriedades básicas (peso, altura, velocidade)
     constructor(peso, altura, velocidade) {
         this.peso = peso;
         this.altura = altura;
-        this.velocidae = velocidae;
+        this.velocidae = velocidade;
     }
     //4 comportamentos (nasce, cresce, reproduz, morre)
     nascer() {
@@ -25,22 +24,25 @@ class Animal {
 
 }
 
-
 class Mamifero  extends Animal {
     //1 específica
-    constructor(peso, altura, velocidae){
-        super(peso, altura, velocidae, mamas)
+    constructor(peso, altura, velocidade){
+        super(peso, altura, velocidade, mamas)
         this.mamas = mamas;
     }
     
     amamentar() {
 
     }
-
 }
 
+class Reptil extends Animal {
+    constructor(peso, altura, velocidade, escamas) {
+        super(peso, altura, velocidae);
+        this.escamas = escamas;
+    }
+    
+    pesilhotermia() {
 
-
-class Reptil {
-    //1 específica
+    }
 }
