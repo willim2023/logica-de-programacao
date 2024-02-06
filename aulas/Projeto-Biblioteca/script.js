@@ -6,53 +6,61 @@ class MaterialBibliografico {
     }
 
     realizarEmprestimo() {
-        if (this._disponivel) {
-            this._disponivel = false;
-            return true; //Emprestimo realizado com sucesso
+        if (this._isDisponivel()) {
+            this._setDisponibilidade(false); //this._disponivel = false primeiro
+            return true; // Empréstimo realizado com sucesso
         } else {
-            return false; //Material já emprestado
+            return false; // Material já emprestado
         }
     }
 
     realizarDevolucao() {
-        if (!this._disponivel) {
-            this._disponivel = true;
-            return true; //Devolução realizada com sucesso
+        if (!this._isDisponivel()) {
+            this._setDisponibilidade(true);
+            return true; // Devolução realizada com sucesso
         } else {
-            return false; //Material já devolvido previamente
+            return false; // Material já devolvido
         }
     }
 
-    renomearAutor(novoNome) {
-        if (novoNome == "") {
-            return alert("Não pode cadastrar nome vazio")
-        }
-        this.autor = novoNome;
+    _isDisponivel() {
+        return this._disponivel;
+    }
+
+    _setDisponibilidade(status) {
+        this._disponivel = status;
     }
 
     toString() {
-        return `${this.titulo} - ${this.autor}`;
+        return `Título: ${this.titulo}, Autor: ${this.autor}`;
     }
 }
 
+// Subclasse Livro
 class Livro extends MaterialBibliografico {
     constructor(titulo, autor, genero) {
         super(titulo, autor);
         this.genero = genero;
     }
 
-    alterarGenero(novoGenero) {
-        this.genero = novoGenero;
+    toString() {
+        return `${super.toString()}, Gênero: ${this.genero}`;
     }
 }
 
+// Subclasse Revista
 class Revista extends MaterialBibliografico {
     constructor(titulo, autor, categoria) {
         super(titulo, autor);
         this.categoria = categoria;
     }
+
+    toString() {
+        return `${super.toString()}, Categoria: ${this.categoria}`;
+    }
 }
 
+// Função para realizar ação (emprestimo ou devolucao)
 function realizarAcao(acao) {
     const selectLivros = document.getElementById("livros");
     const selectedIndex = selectLivros.selectedIndex;
@@ -66,7 +74,7 @@ function realizarAcao(acao) {
 
     if (acao === 'emprestimo') {
         const emprestimoSucesso = livroSelecionado.realizarEmprestimo();
-        exibirResultado(`Emprestimo de ${livroSelecionado.titulo}: ${emprestimoSucesso ? 'Sucesso' : 'Material já emprestado'}`);
+        exibirResultado(`Empréstimo de ${livroSelecionado.titulo}: ${emprestimoSucesso ? 'Sucesso' : 'Material já emprestado'}`);
     } else if (acao === 'devolucao') {
         const devolucaoSucesso = livroSelecionado.realizarDevolucao();
         exibirResultado(`Devolução de ${livroSelecionado.titulo}: ${devolucaoSucesso ? 'Sucesso' : 'Material já devolvido'}`);
@@ -75,7 +83,7 @@ function realizarAcao(acao) {
 
 function exibirResultado(mensagem) {
     const resultadoDiv = document.getElementById("resultado");
-    resultadoDiv.innerHTML += `<p>${mensagem}</p>`
+    resultadoDiv.innerHTML += `<p>${mensagem}</p>`;
 }
 
 const livros = [
@@ -85,15 +93,16 @@ const livros = [
     new Revista("National Geographic", "National Geographic Society", "Ciência")
 ];
 
+// Preencher dinamicamente as opções do select
 const selectLivros = document.getElementById("livros");
 
 for (let i = 0; i < livros.length; i++) {
     const livro = livros[i];
     const option = document.createElement("option");
-    option.value = i + 1; //Adiciona 1 para evitar o valor 0, que representa a opção padrão
+    option.value = i + 1; // Adiciona 1 para evitar o valor 0, que representa a opção padrão
     option.text = livro.titulo;
     selectLivros.add(option);
 }
 
-console.log(livros[0].toString());
-console.log(livros[3].toString());
+console.log(livros[0].toString()); // Exibe informações específicas de Livro
+console.log(livros[3].toString()); // Exibe informações específicas de Revista

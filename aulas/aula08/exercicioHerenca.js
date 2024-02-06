@@ -38,7 +38,7 @@ class Mamifero  extends Animal {
 
 class Reptil extends Animal {
     constructor(peso, altura, velocidade, escamas) {
-        super(peso, altura, velocidae);
+        super(peso, altura, velocidade);
         this.escamas = escamas;
     }
     
