@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>atividade estoque</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <h1>controle de estoque</h1>
+   
+
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome">
+        <br>
+        <br>
+    </div>
+    <div>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade">
+        <br>
+        <br>
+    </div>
+    <div>
+        <label for="preco">Preço unitário:</label>
+        <input type="number" id="preco">
+        <br>
+        <br>
+    </div>
+    <div>
+        <button onclick="adicionarProduto()">Adicionar Produto</button>
+    </div>
+
+    <div>
+        <h2>Produtos no Estoque:</h2>
+        <ul id="estoque-lista"></ul>
+    </div>
+
+    <div>
+        <h2>Total do Estoque:</h2>
+        <p id="total-estoque"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
